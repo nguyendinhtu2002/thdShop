@@ -1,0 +1,43 @@
+@import "../../App.scss";
+.footer {
+  .text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 60px 0;
+    color: $clr-black;
+    .text-sub {
+      font-size: 14px;
+      font-weight: bold;
+    }
+  }
+
+  .copyright-text {
+    display: block;
+    margin-top: 1rem;
+    text-align: right;
+    color: $clr-black;
+    font-size: 14px;
+  }
+}
+@media only screen and (max-width: 860px) {
+  .footer {
+    .text {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+
+      .row {
+        margin-bottom: 1rem;
+        ul {
+          text-align: center;
+        }
+      }
+    }
+
+    .copyright-text {
+      text-align: center;
+    }
+  }
+}

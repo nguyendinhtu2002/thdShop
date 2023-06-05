@@ -1,0 +1,11 @@
+.slider-item {
+  max-height: 300px;
+}
+.slider-item img {
+  object-fit: cover;
+  width: 350px;
+  height: 350px;
+}
+.slider-content {
+  overflow-y: hidden;
+}
