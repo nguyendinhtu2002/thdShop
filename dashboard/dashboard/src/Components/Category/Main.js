@@ -49,15 +49,26 @@ const MainCategory = () => {
       sortable: true,
     },
     {
+      name: "Type",
+      selector: (row) => row.type,
+    },
+    {
       name: "Action",
       selector: (row) => (
         <>
+          <Link
+              to={`/categories/${row._id}/edit`}
+              style={{ marginRight: "5px" }}
+              // className="btn btn-sm btn-outline-success p-2 pb-3 col-md-6"
+          >
+            <button className="btn btn-primary">Edit</button>
+          </Link>
           <Link
             style={{ marginLeft: "15px" }}
             onClick={() => handleDelete(row._id)}
             // className="btn btn-sm btn-outline-success p-2 pb-3 col-md-6"
           >
-            <button className="btn btn-primary">Delete</button>
+            <button className="btn btn-danger">Delete</button>
           </Link>
         </>
       ),

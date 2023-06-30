@@ -59,6 +59,11 @@ const Users = (props) => {
       selector: (row) => row._id,
     },
     {
+      name: "Full Name",
+      selector: (row) => row.firstName + " " + row.lastName,
+    },
+
+    {
       name: "Username",
       selector: (row) => row.username,
       sortable: true,
@@ -78,7 +83,7 @@ const Users = (props) => {
     {
       name: "Action",
       selector: (row) => (
-        <div className="d-flex ">
+        <div className="d-flex " style={{ width: "450px" }}>
           <Link
             to={`/users/${row._id}/edit`}
             style={{ paddingRight: "5px" }}
@@ -89,7 +94,7 @@ const Users = (props) => {
           <button
             type="button"
             onClick={() => handleDelete(row._id)}
-            className="btn btn-primary "
+            className="btn btn-danger "
           >
             Delete
           </button>

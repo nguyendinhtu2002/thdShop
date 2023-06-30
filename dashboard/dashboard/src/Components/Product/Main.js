@@ -63,10 +63,6 @@ const MainProducts = () => {
       ),
     },
     {
-      name: "ID",
-      selector: (row) => row._id,
-    },
-    {
       name: "Title",
       selector: (row) => row.title,
       sortable: true,
@@ -80,24 +76,20 @@ const MainProducts = () => {
       selector: (row) => row.category,
     },
     {
-      name: "Price",
-      selector: (row) => row.price,
+      name: "Price Old",
+      selector: (row) => row.priceOld,
     },
     {
-      name: "DiscountPercentage",
-      selector: (row) => row.discountPercentage,
+      name: "Price Real",
+      selector: (row) => row.priceReal,
     },
     {
       name: "Rating",
       selector: (row) => row.rating,
     },
     {
-      name: "Stock",
-      selector: (row) => row.stock,
-    },
-    {
-      name: "Brand",
-      selector: (row) => row.brand,
+      name: "Status",
+      selector: (row) => row.status,
     },
     {
       name: "Action",
@@ -107,14 +99,14 @@ const MainProducts = () => {
             to={`/product/${row._id}/edit`}
             // className="btn btn-sm btn-outline-success p-2 pb-3 col-md-6"
           >
-            <button className="btn btn-primary">Edit</button>
+            <button className="btn btn-warning">Edit</button>
           </Link>
           <Link
             style={{ marginLeft: "15px" }}
             onClick={() => handleDelete(row._id)}
             // className="btn btn-sm btn-outline-success p-2 pb-3 col-md-6"
           >
-            <button className="btn btn-primary">Delete</button>
+            <button className="btn btn-danger">Delete</button>
           </Link>
         </>
       ),

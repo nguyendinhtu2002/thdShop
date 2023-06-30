@@ -65,24 +65,20 @@ const Orders = (props) => {
       ),
     },
     {
-      name: "ID",
-      selector: (row) => row._id,
-    },
-    {
       name: "ID User",
-      selector: (row) => row.id,
+      selector: (row) => row.user[0].name,
       sortable: true,
-    },
-    {
-      name: "Address ",
-      selector: (row) => row.address_line1,
     },
     {
       name: "Product",
       selector: (row) => row.products[0].title,
     },
     {
-      name: "quantity",
+      name: "Address",
+      selector: (row) => row.address_line1,
+    },
+    {
+      name: "Quantity",
       selector: (row) => row.products[0].quantity,
     },
     {
@@ -90,33 +86,17 @@ const Orders = (props) => {
       selector: (row) => row.products[0].totalPrice,
     },
     {
-      name: "DiscountedPrice",
-      selector: (row) => row.products[0].discountedPrice,
+      name: "Status",
+      selector: (row) => row.status,
     },
-    {
-      name: "Thanh Toán",
-      selector: (row) => (row.isSucces ? "Đã Thanh toán" : "Chưa thanh toán"),
-    },
-    {
-      name: "Trạng Thái Vận Chuyển",
-      selector: (row) => (row.isShip ? "Đã xuất kho" : "Chưa xuất kho"),
-    },
-    {
-      name: "Trạng Thái Giao Hàng",
-      selector: (row) =>
-        row.isDelivery ? "KH đã nhận hàng" : "KH chưa nhận hàng",
-    },
-    {
-      name: "Trả lại",
-      selector: (row) => (row.isReturn ? "Có" : "Không"),
-    },
+
     {
       name: "Action",
       selector: (row) => (
-        <div className="d-flex ">
+        <div className="d-flex" style={{ width: "450px" }}>
           <Link
             to={`/orders/${row._id}/edit`}
-            style={{ paddingRight: "5px" }}
+            style={{ marginRight: "5px" }}
             // className="btn btn-sm btn-outline-success p-2 pb-3 col-md-6"
           >
             <button className="btn btn-primary">Edit</button>
@@ -124,7 +104,8 @@ const Orders = (props) => {
           <button
             type="button"
             onClick={() => handleDelete(row._id)}
-            className="btn btn-primary "
+            className="btn btn-danger"
+
           >
             Delete
           </button>

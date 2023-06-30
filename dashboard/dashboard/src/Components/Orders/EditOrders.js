@@ -17,9 +17,7 @@ const EditOrderMain = (props) => {
   const [quantity, setQuatity] = useState(0);
   console.log(typeof(quantity))
   const [isSucces, setIsSuccess] = useState(false);
-  const [isShip, setIsShip] = useState(false);
   const [isDelivery, setIsDelivery] = useState(false);
-  const [isReturn, setIsReturn] = useState(false);
   const toastId = React.useRef(null);
   const Toastobjects = {
     position: "top-right",
@@ -38,9 +36,7 @@ const EditOrderMain = (props) => {
     setAddress(res.address_line1);
     setQuatity(res.products[0].quantity);
     setIsSuccess(res.isSucces);
-    setIsShip(res.isShip);
     setIsDelivery(res.isDelivery);
-    setIsReturn(res.isReturn);
     // dispatch(updateProductSingle({ res }));
   };
   // const { productSingle } = useSelector((state) => state.ProductSignle);
@@ -137,37 +133,18 @@ const EditOrderMain = (props) => {
                           onChange={(e) => setQuatity(e.target.value)}
                         ></input>
                       </div>
-                      {/* <div className="d-flex">
-                        <label className="form-label">Shipper</label>
-                        <div
-                          class="form-check "
-                          style={{ marginRight: "10px" }}
-                        >
-                          <input
-                            class="form-check-input"
-                            type="radio"
-                            name="exampleRadios"
-                            id="exampleRadios1"
-                            value="option1"
-                            checked
-                          />
-                          <label class="form-check-label" for="exampleRadios1">
-                            Option 1
-                          </label>
+                        <div className="mb-4">
+                        <label className="form-label">Status</label>
+                        <select
+                            className="form-control"
+                            value={isSucces}
+                            onChange={(e) => setIsSuccess(e.target.value)}
+                            >
+                            <option value={true}>Hoàn thành</option>
+                            <option value={false}>Chưa hoàn thành</option>
+                        </select>
                         </div>
-                        <div class="form-check">
-                          <input
-                            class="form-check-input"
-                            type="radio"
-                            name="exampleRadios"
-                            id="exampleRadios2"
-                            value="option2"
-                          />
-                          <label class="form-check-label" for="exampleRadios2">
-                            Option 2
-                          </label>
-                        </div>
-                      </div> */}
+
                     </>
                   )}
                 </div>
