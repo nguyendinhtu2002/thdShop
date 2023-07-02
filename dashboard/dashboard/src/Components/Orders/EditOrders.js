@@ -12,12 +12,12 @@ import { updateProductSingle } from "../../features/productSlide/ProductSliceNew
 
 const EditOrderMain = (props) => {
   const { id } = props;
-
+ 
   const [address, setAddress] = useState("");
   const [quantity, setQuatity] = useState(0);
-  console.log(typeof(quantity))
-  const [isSucces, setIsSuccess] = useState(false);
-  const [isDelivery, setIsDelivery] = useState(false);
+ 
+  const [status, setStatus] = useState(false);
+
   const toastId = React.useRef(null);
   const Toastobjects = {
     position: "top-right",
@@ -30,13 +30,12 @@ const EditOrderMain = (props) => {
   };
   const dispatch = useDispatch();
 
-  const handleGetDetailsProduct = async (id) => {
+  const handleGetDetailsProduct = async (id,access_token) => {
     
-    const res = await PayService.getDetilsPay(id);
+    const res = await PayService.getDetilsPay(id,access_token);
     setAddress(res.address_line1);
     setQuatity(res.products[0].quantity);
-    setIsSuccess(res.isSucces);
-    setIsDelivery(res.isDelivery);
+    setStatus(res.isSucces);
     // dispatch(updateProductSingle({ res }));
   };
   // const { productSingle } = useSelector((state) => state.ProductSignle);
@@ -47,22 +46,21 @@ const EditOrderMain = (props) => {
   const { data, error, isLoading, isError, isSuccess } = mutation;
   const handleUpdate = (e) => {
     e.preventDefault();
-
+    const access_token=localStorage.getItem("access_token")
+    const convert_acces_token = JSON.parse(access_token)
     mutation.mutate({
-      id:id,
-      address_line1:address,
-      products:[
-        {
-          quantity:Number(quantity)
-        }
-      ]
+      id,
+      status,
+      access_token:convert_acces_token
     });
 
     // mutation.mutate(decoded?.id, { phone, name, email, sex })
   };
   
   useEffect(() => {
-    handleGetDetailsProduct(id);
+    const access_token=localStorage.getItem("access_token")
+    
+    handleGetDetailsProduct(id,JSON.parse(access_token));
     if (!error && isSuccess) {
       if (!toast.isActive(toastId.current)) {
         toastId.current = toast.success("Thành công!", Toastobjects);
@@ -108,7 +106,7 @@ const EditOrderMain = (props) => {
                     <Loading />
                   ) : (
                     <>
-                      <div className="mb-4">
+                      {/* <div className="mb-4">
                         <label htmlFor="product_title" className="form-label">
                           Address
                         </label>
@@ -121,8 +119,8 @@ const EditOrderMain = (props) => {
                           value={address}
                           onChange={(e) => setAddress(e.target.value)}
                         />
-                      </div>
-                      <div className="mb-4">
+                      </div> */}
+                      {/* <div className="mb-4">
                         <label className="form-label">Quantity</label>
                         <input
                           type="number"
@@ -132,16 +130,16 @@ const EditOrderMain = (props) => {
                           value={quantity}
                           onChange={(e) => setQuatity(e.target.value)}
                         ></input>
-                      </div>
+                      </div> */}
                         <div className="mb-4">
                         <label className="form-label">Status</label>
                         <select
                             className="form-control"
-                            value={isSucces}
-                            onChange={(e) => setIsSuccess(e.target.value)}
+                           
+                            onChange={(e) => setStatus(e.target.value)}
                             >
-                            <option value={true}>Hoàn thành</option>
-                            <option value={false}>Chưa hoàn thành</option>
+                            <option value="pending" selected={status==="pending"}>Chưa hoàn thành</option>
+                            <option value="delivered" selected={status==="delivered"}>Hoàn thành</option>
                         </select>
                         </div>
 

@@ -10,6 +10,7 @@ import Toast from "../LoadingError/Toast";
 
 const Orders = (props) => {
   const { data } = props;
+  console.log(data)
   const [loading, setLoading] = useState("");
   const [tempData, setTempData] = useState([]);
 
@@ -57,37 +58,34 @@ const Orders = (props) => {
       name: "Image",
       selector: (row) => (
         <img
-          src={row.products[0].thumbnail}
-          alt={row.products[0].title}
+          src={row.order.products[0].image[0]}
+          // alt={row.products[0].title}
           class="img-thumbnail"
           style={{ maxWidth: "50%" }}
         />
       ),
     },
-    {
-      name: "ID User",
-      selector: (row) => row.user[0].name,
-      sortable: true,
-    },
+  
     {
       name: "Product",
-      selector: (row) => row.products[0].title,
+      selector: (row) => row.order.products[0].name,
     },
     {
       name: "Address",
-      selector: (row) => row.address_line1,
+      selector: (row) => row.order.customerAddress,
+      
     },
     {
       name: "Quantity",
-      selector: (row) => row.products[0].quantity,
+      selector: (row) => row.order.products[0].quantityOrder,
     },
     {
       name: "Total Price",
-      selector: (row) => row.products[0].totalPrice,
+      selector: (row) => row.order.totalPrice,
     },
     {
       name: "Status",
-      selector: (row) => row.status,
+      selector: (row) => row.order.status,
     },
 
     {
@@ -95,7 +93,7 @@ const Orders = (props) => {
       selector: (row) => (
         <div className="d-flex" style={{ width: "450px" }}>
           <Link
-            to={`/orders/${row._id}/edit`}
+            to={`/orders/${row.order._id}/edit`}
             style={{ marginRight: "5px" }}
             // className="btn btn-sm btn-outline-success p-2 pb-3 col-md-6"
           >
@@ -103,7 +101,7 @@ const Orders = (props) => {
           </Link>
           <button
             type="button"
-            onClick={() => handleDelete(row._id)}
+            onClick={() => handleDelete(row.order._id)}
             className="btn btn-danger"
 
           >

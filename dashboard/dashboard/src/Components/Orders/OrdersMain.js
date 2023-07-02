@@ -15,7 +15,9 @@ const OrderMain = () => {
 
   const hangldeGetAll = async () => {
     setLoading(true);
-    await OrderService.getPay()
+    const access_token = localStorage.getItem("access_token")
+    console.log(typeof access_token)
+    await OrderService.getPay(JSON.parse(access_token))
       .then((res) => {
         setLoading(false);
         setTempData(res);
@@ -24,7 +26,6 @@ const OrderMain = () => {
         setError(error);
       });
 
-    // dispatch(updatePay(res));
   };
   useEffect(() => {
     if (search === "") {

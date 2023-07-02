@@ -1,13 +1,18 @@
 import axios from "axios";
 import { API } from "../utils/apiUrl";
 
+export const axiosJWT = axios.create();
+
 export const loginUser = async (data) => {
-  const res = await axios.post(`${API}/api/v1/users/login/admin`, data);
+  const res = await axios.post(`${API}/api/v1/users/login/admin`, data,{
+    withCredentials: true,
+  });
   return res.data;
 };
 
 export const getDetailsUser = async (id, access_token) => {
-  const res = await axios.get(`${API}/api/v1/users/${id}`);
+  console.log(id)
+  const res = await axiosJWT.get(`${API}/api/v1/users/${id}`);
   return res.data;
 };
 export const logoutUser = async () => {
@@ -30,6 +35,15 @@ export const getAll = async () => {
 
 export const updateUser = async (id, data) => {
   const res = await axios.put(`${API}/api/v1/users/${id}`, data);
+  return res.data;
+};
+export const refreshToken = async (token) => {
+  const res = await axios.post(`${API}/api/v1/users/refresh_token`, {
+    token: token,
+  });
+
+  const newAccessToken = res.data.access_token;
+  localStorage.setItem("access_token", JSON.stringify(newAccessToken));
   return res.data;
 };
 

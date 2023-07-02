@@ -39,7 +39,46 @@ function App() {
       // hangldeGetAll()
     }
   }, [dispatch]);
+  useEffect(() => {
+    const { storageData, decoded } = handleDecoded();
+    if (decoded?.id) {
+      handleGetDetailsUser(decoded?.id, storageData);
+    }
+    //  dispatch(updateUser({data}))
+  }, []);
+  const handleDecoded = () => {
+    let storageData = localStorage.getItem("access_token");
+    let token_refresh = localStorage.getItem("refresh_token");
+    let decoded = {};
+    if (storageData && isJsonString(storageData)) {
+      storageData = JSON.parse(storageData);
+      token_refresh = JSON.parse(token_refresh);
+      decoded = jwt_decode(storageData);
+    }
+    return { decoded, storageData, token_refresh };
+  };
+  UserService.axiosJWT.interceptors.request.use(
+    async (config) => {
+      // Do something before request is sent
+      const currentTime = new Date();
+      const { decoded, token_refresh } = handleDecoded();
+      // console.log(decoded?.exp < currentTime.getTime() / 1000)
+      if (decoded?.exp < currentTime.getTime() / 1000) {
+        const data = await UserService.refreshToken(token_refresh);
+        console.log(data)
 
+        config.headers["Authorization"] = `Bearer ${data?.access_token}`;
+      }
+      return config;
+    },
+    (err) => {
+      return Promise.reject(err);
+    }
+  );
+  const handleGetDetailsUser = async (id, token) => {
+    const res = await UserService.getDetailsUser(id, token);
+    dispatch(updateUser({ ...res?.data, access_token: token }));
+  };
 
   return (
     <BrowserRouter>

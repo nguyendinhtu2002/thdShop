@@ -32,40 +32,35 @@ const MainProducts = () => {
   };
   const handleDelete = async (id) => {
     if (id) {
-      setShowModal(true);
-
-      await ProductService.deleteProduct(id)
-        .then((res) => {
-          if (!toast.isActive(toastId.current)) {
-            toastId.current = toast.success("Thành công!", Toastobjects);
-          }
-          hangldeGetAll();
-          window.location.reload();
-        })
-        .catch((error) => {
-          if (!toast.isActive(toastId.current)) {
-            toastId.current = toast.error(error, Toastobjects);
-          }
-        });
+      const access_token = localStorage.getItem("access_token")
+      if (window.confirm("Bạn có chắc chắn muốn xóa?")) {
+        await ProductService.deleteProduct(id,access_token)
+          .then((res) => {
+            if (!toast.isActive(toastId.current)) {
+              toastId.current = toast.success("Thành công!", Toastobjects);
+            }
+            hangldeGetAll();
+            window.location.reload();
+          })
+          .catch((error) => {
+            if (!toast.isActive(toastId.current)) {
+              toastId.current = toast.error(error, Toastobjects);
+            }
+          });
+      }
     }
-    handleCloseModal();
   };
   const columns = [
     {
       name: "Image",
       selector: (row) => (
         <img
-          src={row.thumbnail}
+          src={row.images[0]}
           alt={row.title}
           class="img-thumbnail"
           style={{ maxWidth: "50%" }}
         />
       ),
-    },
-    {
-      name: "Title",
-      selector: (row) => row.title,
-      sortable: true,
     },
     {
       name: "Description",
@@ -84,12 +79,16 @@ const MainProducts = () => {
       selector: (row) => row.priceReal,
     },
     {
+      name: "Quantity",
+      selector: (row) => row.quantity,
+    },
+    {
       name: "Rating",
-      selector: (row) => row.rating,
+      selector: (row) => row.rate,
     },
     {
       name: "Status",
-      selector: (row) => row.status,
+      selector: (row) => (row.status ? "Còn hàng" : "Hết hàng"),
     },
     {
       name: "Action",
@@ -151,7 +150,6 @@ const MainProducts = () => {
               <Loading />
             ) : (
               <div className="row">
-              
                 <Table data={tempData} columns={columns} sub={true} />
               </div>
             )}

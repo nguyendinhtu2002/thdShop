@@ -50,7 +50,7 @@ const Login = () => {
       }
     } else {
       mutation.mutate({
-        username,
+        email:username,
         password,
       });
     }
@@ -69,8 +69,9 @@ const Login = () => {
       );
       if (data?.access_token) {
         const decoded = jwt_decode(data?.access_token);
+        console.log(decoded?.id)
         if (decoded?.id) {
-          handleGetDetailsUser(decoded?.id.id, data?.access_token);
+          handleGetDetailsUser(decoded?.id, data?.access_token);
         }
         if (!toast.isActive(toastId.current)) {
           toastId.current = toast.success("Thành công", Toastobjects);
@@ -80,7 +81,7 @@ const Login = () => {
       // dispatch(updateUser({ data }))
     } else if (error) {
       if (!toast.isActive(toastId.current)) {
-        toastId.current = toast.error(error.response.data.error, Toastobjects);
+        toastId.current = toast.error("Lỗi", Toastobjects);
       }
     }
 
