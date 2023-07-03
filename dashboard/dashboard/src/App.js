@@ -19,6 +19,11 @@ import UserScreen from "./Screen/UserScreen";
 import EditUserScreen from "./Screen/EditUserScreen";
 import CategoryScreen from "./Screen/CategoryScreen";
 import AddCategory from "./Screen/AddCategorySreen";
+
+import PaymentScreen from "./Screen/PaymentScreen";
+
+import VoucherScreen from "./Screen/VoucherScreen";
+
 import PrivateRoutes from "./PrivateRouter";
 import * as UserService from "./Services/UserService";
 import { updateUser } from "./features/userSlide/userSlide";
@@ -96,6 +101,11 @@ function App() {
 
           <Route path="/product/:id/edit" element={<EditProductScreen />} />
           <Route path="/orders/:id/edit" element={<EditOrdersScreen />} />
+
+          <Route path="/payment" element={<PaymentScreen />} />
+
+          <Route path="/voucher" element={<VoucherScreen />} />
+
         </Route>
         <Route path="/login" element={<LoginScreen />} />
       </Routes>

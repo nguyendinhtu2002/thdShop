@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 const TopTotal = (props) => {
-  const { orders, products } = props;
+  const { orders, products,users } = props;
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const TopTotal = (props) => {
 
   return (
     <div className="row">
-      <div className="col-lg-4">
+      <div className="col-lg-3">
         <div className="card card-body mb-4 shadow-sm">
           <article className="icontext">
             <span className="icon icon-sm rounded-circle alert-primary">
@@ -35,7 +35,7 @@ const TopTotal = (props) => {
           </article>
         </div>
       </div>
-      <div className="col-lg-4">
+      <div className="col-lg-3">
         <div className="card card-body mb-4 shadow-sm">
           <article className="icontext">
             <span className="icon icon-sm rounded-circle alert-success">
@@ -48,7 +48,7 @@ const TopTotal = (props) => {
           </article>
         </div>
       </div>
-      <div className="col-lg-4">
+      <div className="col-lg-3">
         <div className="card card-body mb-4 shadow-sm">
           <article className="icontext">
             <span className="icon icon-sm rounded-circle alert-warning">
@@ -57,6 +57,19 @@ const TopTotal = (props) => {
             <div className="text">
               <h6 className="mb-1">Total Products</h6>
               {products ? <span>{products.length}</span> : <span>0</span>}
+            </div>
+          </article>
+        </div>
+      </div>
+      <div className="col-lg-3">
+        <div className="card card-body mb-4 shadow-sm">
+          <article className="icontext">
+            <span className="icon icon-sm rounded-circle alert-info">
+              <i className="text-info fas fa-user"></i>
+            </span>
+            <div className="text">
+              <h6 className="mb-1">Total Users</h6>
+              {users ? <span>{users.length}</span> : <span>0</span>}
             </div>
           </article>
         </div>

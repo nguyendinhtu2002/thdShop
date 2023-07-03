@@ -86,6 +86,28 @@ const Sidebar = () => {
               </NavLink>
             </li>
 
+            <li className="menu-item">
+              <NavLink
+                  activeClassName="active"
+                  className="menu-link "
+                  to="/payment"
+              >
+                <i className="icon fas fa-shopping-bag"></i>
+                <span className="text">Payment</span>
+              </NavLink>
+            </li>
+
+            <li className="menu-item">
+              <NavLink
+                  activeClassName="active"
+                  className="menu-link "
+                  to="/voucher"
+              >
+                <i className="icon fas fa-ticket"></i>
+                <span className="text">Voucher</span>
+              </NavLink>
+            </li>
+
             {/* <li className="menu-item ">
               <NavLink
                 activeClassName="active"
