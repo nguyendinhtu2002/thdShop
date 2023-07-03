@@ -29,6 +29,8 @@ import * as UserService from "./Services/UserService";
 import { updateUser } from "./features/userSlide/userSlide";
 import jwt_decode from "jwt-decode";
 import { isJsonString } from "./utils";
+import EditPaymentMain from "./Components/Payment/EditPayment";
+import EditPaymentScreen from "./Screen/EditPaymentScreen";
 
 function App() {
   const userLogin = useSelector((state) => state.user);
@@ -103,6 +105,7 @@ function App() {
           <Route path="/orders/:id/edit" element={<EditOrdersScreen />} />
 
           <Route path="/payment" element={<PaymentScreen />} />
+          <Route path="/payment/:id/edit" element={<EditPaymentScreen />} />
 
           <Route path="/voucher" element={<VoucherScreen />} />
 

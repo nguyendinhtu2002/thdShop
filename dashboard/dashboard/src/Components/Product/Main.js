@@ -30,6 +30,12 @@ const MainProducts = () => {
     draggable: true,
     progress: undefined,
   };
+  const options = {
+    maximumFractionDigits: 0,
+  };
+  const formattedAmount = (amount, options) => {
+    return amount.toLocaleString(undefined, options);
+  };
   const handleDelete = async (id) => {
     if (id) {
       const access_token = localStorage.getItem("access_token")
@@ -72,11 +78,11 @@ const MainProducts = () => {
     },
     {
       name: "Price Old",
-      selector: (row) => row.priceOld,
+      selector: (row) => formattedAmount(row.priceOld),
     },
     {
       name: "Price Real",
-      selector: (row) => row.priceReal,
+      selector: (row) => formattedAmount(row.priceReal),
     },
     {
       name: "Quantity",

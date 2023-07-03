@@ -16,7 +16,7 @@ export const getDetilsPay = async (id, access_token) => {
     const headers = {
         Authorization: `Bearer ${access_token}`,
     };
-    const res = await axiosJWT.get(`${API}/api/v1/payment/details/${id}`, {
+    const res = await axiosJWT.get(`${API}/api/v1/payment/detail/${id}`, {
         headers,
     });
     return res.data;
@@ -26,13 +26,18 @@ export const updatePay = async (id, data,access_token) => {
     const headers = {
         Authorization: `Bearer ${access_token}`,
     };
-    const res = await axios.put(`${API}/api/v1/payment/update/${id}`, data, {
+    const res = await axiosJWT.put(`${API}/api/v1/payment/update/${id}`, data, {
         headers,
     });
     return res.data;
 };
 
-export const deletePay = async (id) => {
-    const res = await axios.delete(`${API}/api/v1/pay/${id}`);
+export const deletePay = async (id,access_token) => {
+    const headers = {
+        Authorization: `Bearer ${access_token}`,
+    };
+    const res = await axiosJWT.delete(`${API}/api/v1/payment/delete/${id}`,{
+        headers
+    });
     return res.data;
 };

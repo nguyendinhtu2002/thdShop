@@ -24,33 +24,25 @@ const Users = (props) => {
     draggable: true,
     progress: undefined,
   };
-  const hangldeGetAll = async () => {
-    setLoading(true);
-    await UserService.getAll()
-      .then((res) => {
-        setLoading(false);
-        setTempData(res);
-      })
-      .catch((error) => {
-        setError(error);
-      });
-  };
+
   const handleDelete = async (id) => {
     if (id) {
-      await UserService.deleteUser(id)
-        .then((res) => {
-          if (!toast.isActive(toastId.current)) {
-            toastId.current = toast.success("Thành công!", Toastobjects);
-          }
-          hangldeGetAll();
-          window.location.reload()
+      if (window.confirm("Bạn có chắc chắn muốn xóa?")) {
+        const access_token = JSON.parse(localStorage.getItem("access_token"));
 
-        })
-        .catch((error) => {
-          if (!toast.isActive(toastId.current)) {
-            toastId.current = toast.error(error, Toastobjects);
-          }
-        });
+        await UserService.deleteUser(id, access_token)
+          .then((res) => {
+            if (!toast.isActive(toastId.current)) {
+              toastId.current = toast.success("Thành công!", Toastobjects);
+            }
+            // window.location.reload();
+          })
+          .catch((error) => {
+            if (!toast.isActive(toastId.current)) {
+              toastId.current = toast.error(error, Toastobjects);
+            }
+          });
+      }
     }
   };
   const columns = [
@@ -62,19 +54,13 @@ const Users = (props) => {
       name: "Full Name",
       selector: (row) => row.firstName + " " + row.lastName,
     },
-
-    {
-      name: "Username",
-      selector: (row) => row.username,
-      sortable: true,
-    },
     {
       name: "Email",
       selector: (row) => row.email,
     },
     {
       name: "Phone",
-      selector: (row) => row.phone,
+      selector: (row) => row.address[0]?.phoneNumber,
     },
     {
       name: "IsAdmin",

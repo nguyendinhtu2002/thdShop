@@ -1,26 +1,23 @@
 import React, { useEffect, useState } from "react";
 
 const TopTotal = (props) => {
-  const { orders, products,users } = props;
+  const { orders, products, users } = props;
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
     if (orders) {
-      const totalPrices = orders.map((order) => {
-        const totalSale = order.products.reduce((acc, product) => {
-          return acc + product.totalPrice;
-        }, 0);
-        return totalSale;
-      });
-
-      const totalPriceSum = totalPrices.reduce((acc, price) => {
-        return acc + price;
+      const total = orders.reduce((accumulator, currentOrder) => {
+        return accumulator + currentOrder.order.totalPrice;
       }, 0);
-
-      setTotalPrice(totalPriceSum);
+      setTotalPrice(total);
     }
   }, [orders]);
-
+  const options = {
+    maximumFractionDigits: 0,
+  };
+  const formattedAmount = (amount, options) => {
+    return amount.toLocaleString(undefined, options);
+  };
   return (
     <div className="row">
       <div className="col-lg-3">
@@ -30,7 +27,8 @@ const TopTotal = (props) => {
               <i className="text-primary fas fa-usd-circle"></i>
             </span>
             <div className="text">
-              <h6 className="mb-1">Total Sales</h6> <span>$ {totalPrice.toFixed(2)}</span>
+              <h6 className="mb-1">Total Sales</h6>{" "}
+              <span>$ {formattedAmount(totalPrice)}</span>
             </div>
           </article>
         </div>

@@ -21,21 +21,24 @@ const MainCategory = () => {
   };
   const handleDelete = async (id) => {
     if (id) {
-      await CategoryService.deleteCategory(id)
-        .then((res) => {
-          if (!toast.isActive(toastId.current)) {
-            toastId.current = toast.success("Thành công!", Toastobjects);
-          }
-          hangldeGetAll();
-          setTimeout(() => {
-            window.location.reload();
-          }, 30000);
-        })
-        .catch((error) => {
-          if (!toast.isActive(toastId.current)) {
-            toastId.current = toast.error(error, Toastobjects);
-          }
-        });
+      const access_token = JSON.parse(localStorage.getItem("access_token"));
+      if (window.confirm("Bạn có chắc chắn muốn xóa?")) {
+        await CategoryService.deleteCategory(id, access_token)
+          .then((res) => {
+            if (!toast.isActive(toastId.current)) {
+              toastId.current = toast.success("Thành công!", Toastobjects);
+            }
+            // hangldeGetAll();
+            setTimeout(() => {
+              window.location.reload();
+            }, 500);
+          })
+          .catch((error) => {
+            if (!toast.isActive(toastId.current)) {
+              toastId.current = toast.error(error, Toastobjects);
+            }
+          });
+      }
     }
   };
   const columns = [
@@ -57,9 +60,9 @@ const MainCategory = () => {
       selector: (row) => (
         <>
           <Link
-              to={`/categories/${row._id}/edit`}
-              style={{ marginRight: "5px" }}
-              // className="btn btn-sm btn-outline-success p-2 pb-3 col-md-6"
+            to={`/categories/${row._id}/edit`}
+            style={{ marginRight: "5px" }}
+            // className="btn btn-sm btn-outline-success p-2 pb-3 col-md-6"
           >
             <button className="btn btn-primary">Edit</button>
           </Link>

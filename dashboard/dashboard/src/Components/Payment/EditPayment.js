@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
-import Toast from "../LoadingError/Toast";
+import Toast from "./../LoadingError/Toast";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { toast } from "react-toastify";
 import Message from "../LoadingError/Error";
 import Loading from "../LoadingError/LoadingError";
-import * as UserService from "../../Services/UserService";
 import { useMutationHooks } from "../../hooks/useMutationHooks";
+import { useQuery } from "react-query";
+import * as PaymentService from "../../Services/PaymentService";
+import { toast } from "react-toastify";
 
 const ToastObjects = {
   pauseOnFocusLoss: false,
@@ -15,12 +16,12 @@ const ToastObjects = {
   autoClose: 2000,
 };
 
-const EditOrderMain = (props) => {
+const EditPaymentMain = (props) => {
   const { id } = props;
+  const [status, setStatus] = useState("");
 
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [updateAdmin, setUpdateAdmin] = useState("false");
   const dispatch = useDispatch();
+
   const toastId = React.useRef(null);
   const Toastobjects = {
     position: "top-right",
@@ -31,28 +32,39 @@ const EditOrderMain = (props) => {
     draggable: true,
     progress: undefined,
   };
-  const handleGetDetailsUser = async (id) => {
-    const res = await UserService.getDetailsUser(id);
-    setIsAdmin(res.data.isAdmin);
-    // dispatch(updateProductSingle({ res }));
+  const handleGetDetailsPayment = async () => {
+    const access_token = JSON.parse(localStorage.getItem("access_token"));
+    const res = await PaymentService.getDetilsPay(id, access_token);
+    setStatus(res.status);
+    return res;
   };
   const mutation = useMutationHooks((data) => {
     const { id, access_token, ...rests } = data;
-    UserService.updateUser(id, rests, access_token);
+    PaymentService.updatePay(id, rests, access_token);
   });
+  const { data, error, isLoading, isError, isSuccess } = mutation;
   const handleUpdate = (e) => {
     e.preventDefault();
     const access_token = JSON.parse(localStorage.getItem("access_token"));
+
     mutation.mutate({
       id: id,
-      isAdmin: updateAdmin,
+      status,
       access_token,
     });
-  };
-  const { data, error, isLoading, isError, isSuccess } = mutation;
 
+    // mutation.mutate(decoded?.id, { phone, name, email, sex })
+  };
+
+  const { isLoading: getDetail, data: dataDetail } = useQuery(
+    ["products"],
+    handleGetDetailsPayment
+  );
   useEffect(() => {
-    handleGetDetailsUser(id);
+    if (dataDetail) {
+    }
+  }, [dataDetail]);
+  useEffect(() => {
     if (!error && isSuccess) {
       if (!toast.isActive(toastId.current)) {
         toastId.current = toast.success("Thành công!", Toastobjects);
@@ -66,17 +78,16 @@ const EditOrderMain = (props) => {
       }
     }
   }, [id, error, isSuccess]);
-
   return (
     <>
       <Toast />
       <section className="content-main" style={{ maxWidth: "1200px" }}>
         <form onSubmit={handleUpdate}>
           <div className="content-header">
-            <Link to="/users" className="btn btn-danger text-white">
-              Go to users
+            <Link to="/payment" className="btn btn-danger text-white">
+              Go to payment
             </Link>
-            <h2 className="content-title">Update User</h2>
+            <h2 className="content-title">Update Payment</h2>
             <div>
               <button type="submit" className="btn btn-primary">
                 Edit now
@@ -95,37 +106,29 @@ const EditOrderMain = (props) => {
                   {/* {productSingleStatus && <Loading />} */}
 
                   {/* productSingleStatus Loading */}
-                  {false ? (
+                  {getDetail ? (
                     <Loading />
                   ) : (
                     <>
                       <div className="mb-4">
-                        <label htmlFor="product_title" className="form-label">
-                          Admin
-                        </label>
-                        {isAdmin ? (
-                          <select
-                            class="form-select"
-                            aria-label="Default select example"
-                            defaultValue={"true"}
-                            onChange={(e) => setUpdateAdmin(e.target.value)}
+                        <label className="form-label">Status</label>
+                        <select
+                          className="form-control"
+                          onChange={(e) => setStatus(e.target.value)}
+                        >
+                          <option
+                            value="pending"
+                            selected={status === "pending"}
                           >
-                            {/* <option selected>Open this select menu</option> */}
-                            <option value="true">True</option>
-                            <option value="false">False</option>
-                          </select>
-                        ) : (
-                          <select
-                            class="form-select"
-                            aria-label="Default select example"
-                            defaultValue={"false"}
-                            onChange={(e) => setUpdateAdmin(e.target.value)}
+                            Chưa hoàn thành
+                          </option>
+                          <option
+                            value="delivered"
+                            selected={status === "delivered"}
                           >
-                            {/* <option selected>Open this select menu</option> */}
-                            <option value="false">False</option>
-                            <option value="true">True</option>
-                          </select>
-                        )}
+                            Hoàn thành
+                          </option>
+                        </select>
                       </div>
                     </>
                   )}
@@ -139,4 +142,4 @@ const EditOrderMain = (props) => {
   );
 };
 
-export default EditOrderMain;
+export default EditPaymentMain;

@@ -22,8 +22,8 @@ const AddProductMain = () => {
   };
 
   const mutationAddCategory = useMutationHooks((data) => {
-    const { ...rests } = data;
-    const res = CategoryService.createCategory({ ...rests });
+    const { access_token, ...rests } = data;
+    const res = CategoryService.createCategory(rests, access_token);
     return res;
   });
 
@@ -34,8 +34,10 @@ const AddProductMain = () => {
         toastId.current = toast.error("Không được để trống!", Toastobjects);
       }
     } else {
+      const access_token = JSON.parse(localStorage.getItem("access_token"));
       mutationAddCategory.mutate({
         name,
+        access_token,
       });
     }
   };

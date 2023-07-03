@@ -25,6 +25,12 @@ const Orders = (props) => {
     draggable: true,
     progress: undefined,
   };
+  const options = {
+    maximumFractionDigits: 0,
+  };
+  const formattedAmount = (amount, options) => {
+    return amount.toLocaleString(undefined, options);
+  };
   const hangldeGetAll = async () => {
     setLoading(true);
     await OrderService.getPay()
@@ -81,7 +87,7 @@ const Orders = (props) => {
     },
     {
       name: "Total Price",
-      selector: (row) => row.order.totalPrice,
+      selector: (row) => formattedAmount(row.order.totalPrice),
     },
     {
       name: "Status",

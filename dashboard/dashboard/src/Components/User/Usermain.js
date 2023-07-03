@@ -13,9 +13,9 @@ const UserMain = () => {
   const [tempData, setTempData] = useState([]);
   const [search, SetSearch] = useState("");
 
-  const hangldeGetAll = async () => {
+  const hangldeGetAll = async (access_token) => {
     setLoading(true);
-    await UserService.getAll()
+    await UserService.getAll(access_token)
       .then((res) => {
         setLoading(false);
         setTempData(res);
@@ -28,7 +28,9 @@ const UserMain = () => {
   };
   useEffect(() => {
     if (search === "") {
-      hangldeGetAll();
+      const access_token = localStorage.getItem("access_token");
+
+      hangldeGetAll(JSON.parse(access_token));
     } else {
       const result = tempData.filter((product) => {
         const values = Object.values(product).join().toLowerCase();
