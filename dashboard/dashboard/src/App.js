@@ -23,6 +23,7 @@ import AddCategory from "./Screen/AddCategorySreen";
 import PaymentScreen from "./Screen/PaymentScreen";
 
 import VoucherScreen from "./Screen/VoucherScreen";
+import EditVoucherScreen from "./Screen/EditVoucherScreen";
 
 import PrivateRoutes from "./PrivateRouter";
 import * as UserService from "./Services/UserService";
@@ -108,6 +109,8 @@ function App() {
           <Route path="/payment/:id/edit" element={<EditPaymentScreen />} />
 
           <Route path="/voucher" element={<VoucherScreen />} />
+          <Route path="/voucher/:id/edit" element={<EditVoucherScreen />} />
+
 
         </Route>
         <Route path="/login" element={<LoginScreen />} />

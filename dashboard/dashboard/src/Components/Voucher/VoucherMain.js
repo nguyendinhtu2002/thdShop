@@ -13,31 +13,31 @@ const VoucherMain = () => {
     const [tempData, setTempData] = useState([]);
     const [search, SetSearch] = useState("");
 
-    // const hangldeGetAll = async () => {
-    //     setLoading(true);
-    //     const access_token = localStorage.getItem("access_token")
-    //     console.log(typeof access_token)
-    //     await VoucherService.getPay(JSON.parse(access_token))
-    //         .then((res) => {
-    //             setLoading(false);
-    //             setTempData(res);
-    //         })
-    //         .catch((error) => {
-    //             setError(error);
-    //         });
-    //
-    // };
-    // useEffect(() => {
-    //     if (search === "") {
-    //         hangldeGetAll();
-    //     } else {
-    //         const result = tempData.filter((voucher) => {
-    //             const values = Object.values(voucher).join().toLowerCase();
-    //             return values.includes(search.toLowerCase());
-    //         });
-    //         setTempData(result);
-    //     }
-    // }, [search]);
+    const hangldeGetAll = async () => {
+        setLoading(true);
+        const access_token = localStorage.getItem("access_token")
+        console.log(typeof access_token)
+        await VoucherService.getPay(JSON.parse(access_token))
+            .then((res) => {
+                setLoading(false);
+                setTempData(res);
+            })
+            .catch((error) => {
+                setError(error);
+            });
+
+    };
+    useEffect(() => {
+        if (search === "") {
+            hangldeGetAll();
+        } else {
+            const result = tempData.filter((voucher) => {
+                const values = Object.values(voucher).join().toLowerCase();
+                return values.includes(search.toLowerCase());
+            });
+            setTempData(result);
+        }
+    }, [search]);
     return (
         <>
             <section className="content-main">

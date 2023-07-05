@@ -1,7 +1,7 @@
 import React from "react";
 import Sidebar from "./../Components/sidebar";
 import Header from "./../Components/Header";
-import VoucherScreen from "../Components/Voucher/VoucherMain";
+import VoucherMain from "../Components/Voucher/VoucherMain";
 
 const PaymentScreen = () => {
   return (
@@ -9,7 +9,7 @@ const PaymentScreen = () => {
       <Sidebar />
       <main className="main-wrap">
         <Header />
-        <VoucherScreen />
+        <VoucherMain />
       </main>
     </>
   );

@@ -36,38 +36,40 @@ const Voucher = (props) => {
     //             setError(error);
     //         });
     // };
-    // const handleDelete = async (id) => {
-    //     if (id) {
-    //         await VoucherService.deletePay(id)
-    //             .then((res) => {
-    //                 if (!toast.isActive(toastId.current)) {
-    //                     toastId.current = toast.success("Thành công!", Toastobjects);
-    //                 }
-    //                 hangldeGetAll();
-    //                 window.location.reload();
-    //             })
-    //             .catch((error) => {
-    //                 if (!toast.isActive(toastId.current)) {
-    //                     toastId.current = toast.error(error, Toastobjects);
-    //                 }
-    //             });
-    //     }
-    // };
+    const handleDelete = async (id) => {
+        if (id) {
+            if (window.confirm("Bạn có chắc chắn muốn xóa?")) {
+                const access_token = JSON.parse(localStorage.getItem("access_token"));
+
+                await VoucherService.deletePay(id,access_token)
+                    .then((res) => {
+                        if (!toast.isActive(toastId.current)) {
+                            toastId.current = toast.success("Thành công!", Toastobjects);
+                        }
+                    })
+                    .catch((error) => {
+                        if (!toast.isActive(toastId.current)) {
+                            toastId.current = toast.error(error, Toastobjects);
+                        }
+                    });
+            }
+        }
+    };
     const columns = [
         {
             name: "Code",
             // selector: (row) => row.order.products[0].name,
-            selector: (row) => "test",
+            selector: (row) => row.code,
         },
         {
             name: "Discount",
             // selector: (row) => row.order.products[0].name,
-             selector: (row) => "test",
+             selector: (row) => row.discount,
         },
         {
             name: "Expired",
             // selector: (row) => row.order.customerAddress,
-            selector: (row) => "1.000.000đ",
+            selector: (row) => row.expiryDays,
 
         },
 
@@ -76,7 +78,7 @@ const Voucher = (props) => {
             selector: (row) => (
                 <div className="d-flex" style={{ width: "450px" }}>
                     <Link
-                        // to={`/orders/${row.order._id}/edit`}
+                        to={`/voucher/${row.code}/edit`}
                         style={{ marginRight: "5px" }}
                         // className="btn btn-sm btn-outline-success p-2 pb-3 col-md-6"
                     >
@@ -84,7 +86,7 @@ const Voucher = (props) => {
                     </Link>
                     <button
                         type="button"
-                        // onClick={() => handleDelete(row.order._id)}
+                        onClick={() => handleDelete(row.code)}
                         className="btn btn-danger"
 
                     >
@@ -97,7 +99,7 @@ const Voucher = (props) => {
     return (
         <>
             <Toast />
-            <Table data={data} columns={columns} sub={true} />
+                <Table data={data} columns={columns} sub={true} />
         </>
     );
 };
