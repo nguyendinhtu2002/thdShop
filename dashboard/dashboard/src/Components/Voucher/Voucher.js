@@ -7,6 +7,7 @@ import Table from "../Table/Table";
 import * as VoucherService from "../../Services/VoucherService";
 import { toast } from "react-toastify";
 import Toast from "../LoadingError/Toast";
+import Loading from "../LoadingError/LoadingError";
 
 const Voucher = (props) => {
     const { data } = props;
@@ -78,7 +79,7 @@ const Voucher = (props) => {
             selector: (row) => (
                 <div className="d-flex" style={{ width: "450px" }}>
                     <Link
-                        to={`/voucher/${row.code}/edit`}
+                        to={`/voucher/${row._id}/edit`}
                         style={{ marginRight: "5px" }}
                         // className="btn btn-sm btn-outline-success p-2 pb-3 col-md-6"
                     >
@@ -86,7 +87,7 @@ const Voucher = (props) => {
                     </Link>
                     <button
                         type="button"
-                        onClick={() => handleDelete(row.code)}
+                        onClick={() => handleDelete(row._id)}
                         className="btn btn-danger"
 
                     >
@@ -99,7 +100,15 @@ const Voucher = (props) => {
     return (
         <>
             <Toast />
-                <Table data={data} columns={columns} sub={true} />
+            <div className="text-end mb-3">
+                <Link to="/voucher/create" className="btn btn-primary">Create New Voucher</Link>
+            </div>
+            <Table data={data} columns={columns} sub={true} />
+
+
+
+
+
         </>
     );
 };

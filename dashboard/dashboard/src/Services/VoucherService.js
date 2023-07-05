@@ -22,21 +22,21 @@ export const getPay = async (access_token) => {
     return res.data;
 };
 
-export const getDetilsPay = async (data, access_token) => {
+export const getDetilsPay = async (id, access_token) => {
     const headers = {
         Authorization: `Bearer ${access_token}`,
     };
-    const res = await axiosJWT.get(`${API}/api/v1/voucher/details/code`,data, {
+    const res = await axiosJWT.get(`${API}/api/v1/voucher/${id}`, {
         headers,
     });
     return res.data;
 };
 
-export const updatePay = async (code, data,access_token) => {
+export const updatePay = async (id, data,access_token) => {
     const headers = {
         Authorization: `Bearer ${access_token}`,
     };
-    const res = await axios.put(`${API}/api/v1/voucher/update/${code}`, data, {
+    const res = await axios.put(`${API}/api/v1/voucher/${id}`, data, {
         headers,
     });
     return res.data;

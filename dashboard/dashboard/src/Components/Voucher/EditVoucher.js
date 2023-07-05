@@ -17,7 +17,7 @@ const ToastObjects = {
 };
 
 const EditVoucher = (props) => {
-    const { code } = props;
+    const { id } = props;
     const [discount, setDiscount] = useState("");
     const [expiryDays,setExpiryDays] = useState("");
 
@@ -35,15 +35,15 @@ const EditVoucher = (props) => {
     };
     const handleGetDetailsVoucher = async () => {
         const access_token = JSON.parse(localStorage.getItem("access_token"));
-        const res = await VoucherService.getDetilsPay(code, access_token);
+        const res = await VoucherService.getDetilsPay(id, access_token);
         setDiscount(res.discount);
         setExpiryDays(res.expiryDays);
         // setStatus(res.status);
         return res;
     };
     const mutation = useMutationHooks((data) => {
-        const { code, access_token, ...rests } = data;
-        VoucherService.updatePay(code, rests, access_token);
+        const { id, access_token, ...rests } = data;
+        VoucherService.updatePay(id, rests, access_token);
     });
     const { data, error, isLoading, isError, isSuccess } = mutation;
     const handleUpdate = (e) => {
@@ -51,7 +51,7 @@ const EditVoucher = (props) => {
         const access_token = JSON.parse(localStorage.getItem("access_token"));
 
         mutation.mutate({
-            id: code,
+            id: id,
             discount,
             expiryDays,
             access_token,
@@ -81,15 +81,15 @@ const EditVoucher = (props) => {
                 );
             }
         }
-    }, [code, error, isSuccess]);
+    }, [id, error, isSuccess]);
     return (
         <>
             <Toast />
             <section className="content-main" style={{ maxWidth: "1200px" }}>
                 <form onSubmit={handleUpdate}>
                     <div className="content-header">
-                        <Link to="/payment" className="btn btn-danger text-white">
-                            Go to payment
+                        <Link to="/voucher" className="btn btn-danger text-white">
+                            Go to voucher
                         </Link>
                         <h2 className="content-title">Update Voucher</h2>
                         <div>
@@ -128,9 +128,9 @@ const EditVoucher = (props) => {
                                             </div>
 
                                             <div className="mb-4">
-                                                <label htmlFor="expiryDays" className="form-label">Ngày hết hạn</label>
+                                                <label htmlFor="expiryDays" className="form-label">Thời gian giảm giá</label>
                                                 <input
-                                                    type="date"
+                                                    type="text"
                                                     placeholder="Type here"
                                                     className="form-control"
                                                     id="expiryDays"
