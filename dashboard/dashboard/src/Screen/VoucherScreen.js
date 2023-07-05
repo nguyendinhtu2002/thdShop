@@ -3,7 +3,7 @@ import Sidebar from "./../Components/sidebar";
 import Header from "./../Components/Header";
 import VoucherMain from "../Components/Voucher/VoucherMain";
 
-const PaymentScreen = () => {
+const VoucherScreen = () => {
   return (
     <>
       <Sidebar />
@@ -15,4 +15,4 @@ const PaymentScreen = () => {
   );
 };
 
-export default PaymentScreen;
+export default VoucherScreen;

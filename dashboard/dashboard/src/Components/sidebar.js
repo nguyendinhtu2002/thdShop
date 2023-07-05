@@ -107,6 +107,16 @@ const Sidebar = () => {
                 <span className="text">Voucher</span>
               </NavLink>
             </li>
+            <li className="menu-item">
+              <NavLink
+                  activeClassName="active"
+                  className="menu-link "
+                  to="/message"
+              >
+                <i className="icon fas fa-phone"></i>
+                <span className="text">Message</span>
+              </NavLink>
+            </li>
 
             {/* <li className="menu-item ">
               <NavLink
