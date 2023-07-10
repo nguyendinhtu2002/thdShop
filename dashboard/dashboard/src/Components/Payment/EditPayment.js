@@ -85,12 +85,12 @@ const EditPaymentMain = (props) => {
         <form onSubmit={handleUpdate}>
           <div className="content-header">
             <Link to="/payment" className="btn btn-danger text-white">
-              Go to payment
+              Về trang thanh toán
             </Link>
-            <h2 className="content-title">Update Payment</h2>
+            <h2 className="content-title">Sửa thanh toán</h2>
             <div>
               <button type="submit" className="btn btn-primary">
-                Edit now
+                Xác nhận sửa
               </button>
             </div>
           </div>
@@ -111,7 +111,7 @@ const EditPaymentMain = (props) => {
                   ) : (
                     <>
                       <div className="mb-4">
-                        <label className="form-label">Status</label>
+                        <label className="form-label">Trạng thái</label>
                         <select
                           className="form-control"
                           onChange={(e) => setStatus(e.target.value)}

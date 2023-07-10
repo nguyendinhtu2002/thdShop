@@ -61,7 +61,7 @@ const Orders = (props) => {
   };
   const columns = [
     {
-      name: "Image",
+      name: "Ảnh",
       selector: (row) => (
         <img
           src={row.order.products[0].image[0]}
@@ -73,29 +73,29 @@ const Orders = (props) => {
     },
   
     {
-      name: "Product",
+      name:"Sản phẩm",
       selector: (row) => row.order.products[0].name,
     },
     {
-      name: "Address",
+      name: "Địa chỉ giao hàng",
       selector: (row) => row.order.customerAddress,
       
     },
     {
-      name: "Quantity",
+      name: "Số lượng",
       selector: (row) => row.order.products[0].quantityOrder,
     },
     {
-      name: "Total Price",
+      name: "Tổng tiền",
       selector: (row) => formattedAmount(row.order.totalPrice),
     },
     {
-      name: "Status",
+      name: "Trạng thái",
       selector: (row) => row.order.status,
     },
 
     {
-      name: "Action",
+      name: "Hành động",
       selector: (row) => (
         <div className="d-flex" style={{ width: "450px" }}>
           <Link
@@ -103,7 +103,7 @@ const Orders = (props) => {
             style={{ marginRight: "5px" }}
             // className="btn btn-sm btn-outline-success p-2 pb-3 col-md-6"
           >
-            <button className="btn btn-primary">Edit</button>
+            <button className="btn btn-primary">Sửa</button>
           </Link>
           <button
             type="button"
@@ -111,7 +111,7 @@ const Orders = (props) => {
             className="btn btn-danger"
 
           >
-            Delete
+            Xóa
           </button>
         </div>
       ),

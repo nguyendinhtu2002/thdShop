@@ -24,6 +24,10 @@ import PaymentScreen from "./Screen/PaymentScreen";
 
 import VoucherScreen from "./Screen/VoucherScreen";
 import EditVoucherScreen from "./Screen/EditVoucherScreen";
+import AddVoucherScreen from "./Screen/AddVoucherScreen";
+
+import MessageScreen from "./Screen/MessageScreen";
+import EditMessageScreen from "./Screen/EditMessageScreen";
 
 import PrivateRoutes from "./PrivateRouter";
 import * as UserService from "./Services/UserService";
@@ -110,6 +114,10 @@ function App() {
 
           <Route path="/voucher" element={<VoucherScreen />} />
           <Route path="/voucher/:id/edit" element={<EditVoucherScreen />} />
+          <Route path="/voucher/create" element={<AddVoucherScreen />} />
+
+          <Route path="/message" element={<MessageScreen />} />
+          <Route path="/message/:id/edit" element={<EditMessageScreen />} />
 
 
         </Route>

@@ -64,12 +64,12 @@ const AddProductMain = () => {
         <form onSubmit={submitHandler}>
           <div className="content-header">
             <Link to="/category" className="btn btn-danger text-white">
-              Go to category
+              Về trang danh mục
             </Link>
-            <h2 className="content-title">Add Category</h2>
+            <h2 className="content-title">Thêm mới danh mục</h2>
             <div>
               <button type="submit" className="btn btn-primary">
-                Publish now
+                Xác nhận thêm
               </button>
             </div>
           </div>
@@ -82,7 +82,7 @@ const AddProductMain = () => {
                   {loading && <Loading />} */}
                   <div className="mb-4">
                     <label htmlFor="product_title" className="form-label">
-                      Name Category
+                      Tên danh mục
                     </label>
                     <input
                       type="text"

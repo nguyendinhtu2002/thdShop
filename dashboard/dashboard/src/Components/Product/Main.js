@@ -58,7 +58,7 @@ const MainProducts = () => {
   };
   const columns = [
     {
-      name: "Image",
+      name: "Ảnh",
       selector: (row) => (
         <img
           src={row.images[0]}
@@ -69,49 +69,49 @@ const MainProducts = () => {
       ),
     },
     {
-      name: "Description",
+      name: "Mô tả",
       selector: (row) => row.description,
     },
     {
-      name: "Category",
+      name: "Danh mục",
       selector: (row) => row.category,
     },
     {
-      name: "Price Old",
+      name: "Giá gốc",
       selector: (row) => formattedAmount(row.priceOld),
     },
     {
-      name: "Price Real",
+      name: "Giá bán",
       selector: (row) => formattedAmount(row.priceReal),
     },
     {
-      name: "Quantity",
+      name: "Số lượng còn",
       selector: (row) => row.quantity,
     },
     {
-      name: "Rating",
+      name: "Đánh giá",
       selector: (row) => row.rate,
     },
     {
-      name: "Status",
+      name: "Trạng thái",
       selector: (row) => (row.status ? "Còn hàng" : "Hết hàng"),
     },
     {
-      name: "Action",
+      name: "Hành động",
       selector: (row) => (
         <>
           <Link
             to={`/product/${row._id}/edit`}
             // className="btn btn-sm btn-outline-success p-2 pb-3 col-md-6"
           >
-            <button className="btn btn-warning">Edit</button>
+            <button className="btn btn-warning">Sửa</button>
           </Link>
           <Link
             style={{ marginLeft: "15px" }}
             onClick={() => handleDelete(row._id)}
             // className="btn btn-sm btn-outline-success p-2 pb-3 col-md-6"
           >
-            <button className="btn btn-danger">Delete</button>
+            <button className="btn btn-danger">Xóa</button>
           </Link>
         </>
       ),
@@ -142,10 +142,10 @@ const MainProducts = () => {
       <Toast />
       <section className="content-main">
         <div className="content-header">
-          <h2 className="content-title">Products</h2>
+          <h2 className="content-title">Sản phẩm</h2>
           <div>
             <Link to="/addproduct" className="btn btn-primary">
-              Create new
+              Thêm mới
             </Link>
           </div>
         </div>

@@ -47,31 +47,31 @@ const MainCategory = () => {
       selector: (row) => row._id,
     },
     {
-      name: "Name",
+      name: "Danh mục",
       selector: (row) => row.name,
       sortable: true,
     },
     {
-      name: "Type",
+      name: "Danh mục con",
       selector: (row) => row.type,
     },
     {
-      name: "Action",
+      name: "Thao tác",
       selector: (row) => (
         <>
-          <Link
-            to={`/categories/${row._id}/edit`}
-            style={{ marginRight: "5px" }}
-            // className="btn btn-sm btn-outline-success p-2 pb-3 col-md-6"
-          >
-            <button className="btn btn-primary">Edit</button>
-          </Link>
+          {/*<Link*/}
+          {/*  to={`/categories/${row._id}/edit`}*/}
+          {/*  style={{ marginRight: "5px" }}*/}
+          {/*  // className="btn btn-sm btn-outline-success p-2 pb-3 col-md-6"*/}
+          {/*>*/}
+          {/*  <button className="btn btn-primary">Sửa</button>*/}
+          {/*</Link>*/}
           <Link
             style={{ marginLeft: "15px" }}
             onClick={() => handleDelete(row._id)}
             // className="btn btn-sm btn-outline-success p-2 pb-3 col-md-6"
           >
-            <button className="btn btn-danger">Delete</button>
+            <button className="btn btn-danger">Xóa</button>
           </Link>
         </>
       ),
@@ -94,10 +94,10 @@ const MainCategory = () => {
       <Toast />
       <section className="content-main">
         <div className="content-header">
-          <h2 className="content-title">Category</h2>
+          <h2 className="content-title">Danh mục</h2>
           <div>
             <Link to="/addcategory" className="btn btn-primary">
-              Create new
+              Thêm mới
             </Link>
           </div>
         </div>

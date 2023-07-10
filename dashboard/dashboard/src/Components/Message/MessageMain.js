@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import Message from "../LoadingError/Error";
+import MessageError from "../LoadingError/Error";
 import Loading from "../LoadingError/LoadingError";
-import Voucher from "./Voucher";
+import Message from "./Message";
 import { useSelector } from "react-redux";
-import * as VoucherService from "../../Services/VoucherService";
+import * as MessageService from "../../Services/MessageService";
 import { error } from "jquery";
-const VoucherMain = () => {
+const MessageMain = () => {
       // const paymentList = useSelector((state) => state.paymentList);
       // const { loading, error, payments } = paymentList;
     const [loading, setLoading] = useState("");
@@ -17,7 +17,7 @@ const VoucherMain = () => {
         setLoading(true);
         const access_token = localStorage.getItem("access_token")
         console.log(typeof access_token)
-        await VoucherService.getPay(JSON.parse(access_token))
+        await MessageService.getPay(JSON.parse(access_token))
             .then((res) => {
                 setLoading(false);
                 setTempData(res);
@@ -31,8 +31,8 @@ const VoucherMain = () => {
         if (search === "") {
             hangldeGetAll();
         } else {
-            const result = tempData.filter((voucher) => {
-                const values = Object.values(voucher).join().toLowerCase();
+            const result = tempData.filter((message) => {
+                const values = Object.values(message).join().toLowerCase();
                 return values.includes(search.toLowerCase());
             });
             setTempData(result);
@@ -42,7 +42,7 @@ const VoucherMain = () => {
         <>
             <section className="content-main">
                 <div className="content-header">
-                    <h2 className="content-title">Mã giảm giá</h2>
+                    <h2 className="content-title">Bình luận</h2>
                 </div>
 
                 <div className="card mb-4 shadow-sm">
@@ -51,9 +51,9 @@ const VoucherMain = () => {
                             {loading ? (
                                 <Loading />
                             ) : error ? (
-                                <Message variant="alert-danger">{error}</Message>
+                                <MessageError variant="alert-danger">{error}</MessageError>
                             ) : (
-                                <Voucher data={tempData} search={search} />
+                                <MessageError data={tempData} search={search} />
                             )}
                         </div>
                     </div>
@@ -63,4 +63,4 @@ const VoucherMain = () => {
     );
 };
 
-export default VoucherMain;
+export default MessageMain;

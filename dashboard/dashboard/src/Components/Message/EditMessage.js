@@ -6,7 +6,7 @@ import Message from "../LoadingError/Error";
 import Loading from "../LoadingError/LoadingError";
 import { useMutationHooks } from "../../hooks/useMutationHooks";
 import { useQuery } from "react-query";
-import * as VoucherService from "../../Services/VoucherService";
+import * as MessageService from "../../Services/MessageService";
 import { toast } from "react-toastify";
 
 const ToastObjects = {
@@ -16,7 +16,7 @@ const ToastObjects = {
     autoClose: 2000,
 };
 
-const EditVoucher = (props) => {
+const EditMessage = (props) => {
     const { id } = props;
     const [discount, setDiscount] = useState("");
     const [expiryDays,setExpiryDays] = useState("");
@@ -35,7 +35,7 @@ const EditVoucher = (props) => {
     };
     const handleGetDetailsVoucher = async () => {
         const access_token = JSON.parse(localStorage.getItem("access_token"));
-        const res = await VoucherService.getDetilsPay(id, access_token);
+        const res = await MessageService.getDetilsPay(id, access_token);
         setDiscount(res.discount);
         setExpiryDays(res.expiryDays);
         // setStatus(res.status);
@@ -43,7 +43,7 @@ const EditVoucher = (props) => {
     };
     const mutation = useMutationHooks((data) => {
         const { id, access_token, ...rests } = data;
-        VoucherService.updatePay(id, rests, access_token);
+        MessageService.updatePay(id, rests, access_token);
     });
     const { data, error, isLoading, isError, isSuccess } = mutation;
     const handleUpdate = (e) => {
@@ -89,12 +89,12 @@ const EditVoucher = (props) => {
                 <form onSubmit={handleUpdate}>
                     <div className="content-header">
                         <Link to="/voucher" className="btn btn-danger text-white">
-                            Về trang danh sách khuyến mãi
+                            Go to voucher
                         </Link>
-                        <h2 className="content-title">Update Voucher</h2>
+                        <h2 className="content-title">Sửa bình luận</h2>
                         <div>
                             <button type="submit" className="btn btn-primary">
-                                Xác nhận sửa
+                                Edit now
                             </button>
                         </div>
                     </div>
@@ -115,7 +115,7 @@ const EditVoucher = (props) => {
                                     ) : (
                                         <>
                                             <div className="mb-4">
-                                                <label htmlFor="discount" className="form-label">Khuyến mãi</label>
+                                                <label htmlFor="discount" className="form-label">Discount</label>
                                                 <input
                                                     type="text"
                                                     placeholder="Type here"
@@ -151,4 +151,4 @@ const EditVoucher = (props) => {
     );
 };
 
-export default EditVoucher;
+export default EditMessage;

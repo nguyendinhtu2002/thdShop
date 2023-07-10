@@ -1,16 +1,16 @@
-import React, { useEffect, useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import React, {useEffect, useMemo, useState} from "react";
+import {Link} from "react-router-dom";
 import moment from "moment";
 import DataTable from "react-data-table-component";
-import { useDispatch, useSelector } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import Table from "../Table/Table";
-import * as VoucherService from "../../Services/VoucherService";
-import { toast } from "react-toastify";
+import * as MessageService from "../../Services/MessageService";
+import {toast} from "react-toastify";
 import Toast from "../LoadingError/Toast";
 import Loading from "../LoadingError/LoadingError";
 
-const Voucher = (props) => {
-    const { data } = props;
+const Message = (props) => {
+    const {data} = props;
     console.log(data)
     const [loading, setLoading] = useState("");
     const [tempData, setTempData] = useState([]);
@@ -42,7 +42,7 @@ const Voucher = (props) => {
             if (window.confirm("Bạn có chắc chắn muốn xóa?")) {
                 const access_token = JSON.parse(localStorage.getItem("access_token"));
 
-                await VoucherService.deletePay(id,access_token)
+                await MessageService.deletePay(id, access_token)
                     .then((res) => {
                         if (!toast.isActive(toastId.current)) {
                             toastId.current = toast.success("Thành công!", Toastobjects);
@@ -58,32 +58,37 @@ const Voucher = (props) => {
     };
     const columns = [
         {
-            name: "Mã",
-            // selector: (row) => row.order.products[0].name,
-            selector: (row) => row.code,
-        },
-        {
-            name: "Khuyến mãi",
-            // selector: (row) => row.order.products[0].name,
-             selector: (row) => row.discount,
-        },
-        {
-            name: "Thời hạn",
-            // selector: (row) => row.order.customerAddress,
-            selector: (row) => row.expiryDays,
-
-        },
-
-        {
-            name: "Hành động",
+            name: "Image",
             selector: (row) => (
-                <div className="d-flex" style={{ width: "450px" }}>
+                <img
+                    src={row.image}
+                    className="img-thumbnail"
+                    style={{maxWidth: "50%"}}
+                    alt=""/>
+
+            ),
+        },
+        {
+            name: "Name",
+            // selector: (row) => row.order.products[0].name,
+            selector: (row) => row.name,
+        },
+        {
+            name: "Type",
+            // selector: (row) => row.order.products[0].name,
+            selector: (row) => row.type,
+        },
+
+        {
+            name: "Action",
+            selector: (row) => (
+                <div className="d-flex" style={{width: "450px"}}>
                     <Link
-                        to={`/voucher/${row._id}/edit`}
-                        style={{ marginRight: "5px" }}
+                        to={`/message/${row._id}/edit`}
+                        style={{marginRight: "5px"}}
                         // className="btn btn-sm btn-outline-success p-2 pb-3 col-md-6"
                     >
-                        <button className="btn btn-primary">Sửa</button>
+                        <button className="btn btn-primary">Edit</button>
                     </Link>
                     <button
                         type="button"
@@ -91,7 +96,7 @@ const Voucher = (props) => {
                         className="btn btn-danger"
 
                     >
-                        Xóa
+                        Delete
                     </button>
                 </div>
             ),
@@ -99,18 +104,10 @@ const Voucher = (props) => {
     ];
     return (
         <>
-            <Toast />
-            <div className="text-end mb-3">
-                <Link to="/voucher/create" className="btn btn-primary">Thêm mã giảm giá</Link>
-            </div>
-            <Table data={data} columns={columns} sub={true} />
-
-
-
-
-
+            <Toast/>
+            <Table data={data} columns={columns} sub={true}/>
         </>
     );
 };
 
-export default Voucher;
+export default Message;

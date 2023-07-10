@@ -74,12 +74,12 @@ const EditOrderMain = (props) => {
         <form onSubmit={handleUpdate}>
           <div className="content-header">
             <Link to="/users" className="btn btn-danger text-white">
-              Go to users
+              Về trang danh sách người dùng
             </Link>
             <h2 className="content-title">Update User</h2>
             <div>
               <button type="submit" className="btn btn-primary">
-                Edit now
+                Xác nhận sửa
               </button>
             </div>
           </div>

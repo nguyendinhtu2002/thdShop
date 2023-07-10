@@ -81,12 +81,12 @@ const EditOrderMain = (props) => {
         <form onSubmit={handleUpdate}>
           <div className="content-header">
             <Link to="/orders" className="btn btn-danger text-white">
-              Go to orders
+              Về trang đơn hàng
             </Link>
-            <h2 className="content-title">Update Orders</h2>
+            <h2 className="content-title">Sửa đơn hàng</h2>
             <div>
               <button type="submit" className="btn btn-primary">
-                Edit now
+                Xác nhận sửa
               </button>
             </div>
           </div>
@@ -132,7 +132,7 @@ const EditOrderMain = (props) => {
                         ></input>
                       </div> */}
                         <div className="mb-4">
-                        <label className="form-label">Status</label>
+                        <label className="form-label">Trạng thái</label>
                         <select
                             className="form-control"
                            

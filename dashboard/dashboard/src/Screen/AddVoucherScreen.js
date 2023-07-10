@@ -1,18 +1,18 @@
 import React from "react";
 import Sidebar from "./../Components/sidebar";
 import Header from "./../Components/Header";
-import VoucherMain from "../Components/Voucher/VoucherMain";
+import AddVoucher from "./../Components/Voucher/AddVoucher";
 
-const VoucherScreen = () => {
+const AddVoucherScreen = () => {
   return (
     <>
       <Sidebar />
       <main className="main-wrap">
         <Header />
-        <VoucherMain />
+        <AddVoucher />
       </main>
     </>
   );
 };
 
-export default VoucherScreen;
+export default AddVoucherScreen;
