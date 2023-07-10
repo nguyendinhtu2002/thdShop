@@ -89,12 +89,12 @@ const EditVoucher = (props) => {
                 <form onSubmit={handleUpdate}>
                     <div className="content-header">
                         <Link to="/voucher" className="btn btn-danger text-white">
-                            Go to voucher
+                            Về trang danh sách khuyến mãi
                         </Link>
                         <h2 className="content-title">Update Voucher</h2>
                         <div>
                             <button type="submit" className="btn btn-primary">
-                                Edit now
+                                Xác nhận sửa
                             </button>
                         </div>
                     </div>
@@ -115,7 +115,7 @@ const EditVoucher = (props) => {
                                     ) : (
                                         <>
                                             <div className="mb-4">
-                                                <label htmlFor="discount" className="form-label">Discount</label>
+                                                <label htmlFor="discount" className="form-label">Khuyến mãi</label>
                                                 <input
                                                     type="text"
                                                     placeholder="Type here"

@@ -91,7 +91,7 @@ const EditMessage = (props) => {
                         <Link to="/voucher" className="btn btn-danger text-white">
                             Go to voucher
                         </Link>
-                        <h2 className="content-title">Update Message</h2>
+                        <h2 className="content-title">Sửa bình luận</h2>
                         <div>
                             <button type="submit" className="btn btn-primary">
                                 Edit now

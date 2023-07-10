@@ -42,7 +42,7 @@ const MessageMain = () => {
         <>
             <section className="content-main">
                 <div className="content-header">
-                    <h2 className="content-title">Messages</h2>
+                    <h2 className="content-title">Bình luận</h2>
                 </div>
 
                 <div className="card mb-4 shadow-sm">

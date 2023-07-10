@@ -58,24 +58,24 @@ const Voucher = (props) => {
     };
     const columns = [
         {
-            name: "Code",
+            name: "Mã",
             // selector: (row) => row.order.products[0].name,
             selector: (row) => row.code,
         },
         {
-            name: "Discount",
+            name: "Khuyến mãi",
             // selector: (row) => row.order.products[0].name,
              selector: (row) => row.discount,
         },
         {
-            name: "Expired",
+            name: "Thời hạn",
             // selector: (row) => row.order.customerAddress,
             selector: (row) => row.expiryDays,
 
         },
 
         {
-            name: "Action",
+            name: "Hành động",
             selector: (row) => (
                 <div className="d-flex" style={{ width: "450px" }}>
                     <Link
@@ -83,7 +83,7 @@ const Voucher = (props) => {
                         style={{ marginRight: "5px" }}
                         // className="btn btn-sm btn-outline-success p-2 pb-3 col-md-6"
                     >
-                        <button className="btn btn-primary">Edit</button>
+                        <button className="btn btn-primary">Sửa</button>
                     </Link>
                     <button
                         type="button"
@@ -91,7 +91,7 @@ const Voucher = (props) => {
                         className="btn btn-danger"
 
                     >
-                        Delete
+                        Xóa
                     </button>
                 </div>
             ),
@@ -101,7 +101,7 @@ const Voucher = (props) => {
         <>
             <Toast />
             <div className="text-end mb-3">
-                <Link to="/voucher/create" className="btn btn-primary">Create New Voucher</Link>
+                <Link to="/voucher/create" className="btn btn-primary">Thêm mã giảm giá</Link>
             </div>
             <Table data={data} columns={columns} sub={true} />
 

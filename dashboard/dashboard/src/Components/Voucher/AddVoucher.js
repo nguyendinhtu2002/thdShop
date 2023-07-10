@@ -70,12 +70,12 @@ return (
             <form onSubmit={submitHandler}>
                 <div className="content-header">
                     <Link to="/voucher" className="btn btn-danger text-white">
-                        Go to voucher
+                        Về trang danh sách giảm giá
                     </Link>
-                    <h2 className="content-title">Add Voucher</h2>
+                    <h2 className="content-title">Thêm mã giảm giá</h2>
                     <div>
                         <button type="submit" className="btn btn-primary">
-                            Publish now
+                            Xác nhận thêm
                         </button>
                     </div>
                 </div>
@@ -101,7 +101,7 @@ return (
                                 </div>
                                 <div className="mb-4">
                                     <label htmlFor="discount" className="form-label">
-                                        Discount
+                                        Khuyến mãi
                                     </label>
                                     <input
                                         type="text"

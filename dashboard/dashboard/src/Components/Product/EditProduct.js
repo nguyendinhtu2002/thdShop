@@ -120,12 +120,11 @@ const EditProductMain = (props) => {
         <form onSubmit={handleUpdate}>
           <div className="content-header">
             <Link to="/products" className="btn btn-danger text-white">
-              Go to products
+              Về trang sản phẩm
             </Link>
-            <h2 className="content-title">Update Product</h2>
+            <h2 className="content-title">Sửa sản phẩm</h2>
             <div>
-              <button type="submit" className="btn btn-primary">
-                Edit now
+              <button type="submit" className="btn btn-primary">Xác nhận sửa
               </button>
             </div>
           </div>
@@ -161,7 +160,7 @@ const EditProductMain = (props) => {
                       </div>
                       <div className="mb-4">
                         <label htmlFor="product_price" className="form-label">
-                          Category
+                          Danh mục
                         </label>
                         <input
                           type="text"
@@ -176,7 +175,7 @@ const EditProductMain = (props) => {
                       </div>
                       <div className="mb-4">
                         <label htmlFor="product_price" className="form-label">
-                          Description
+                          Mô tả
                         </label>
                         <input
                           type="text"
@@ -189,7 +188,7 @@ const EditProductMain = (props) => {
                         />
                       </div>
                       <div className="mb-4">
-                        <label className="form-label">Price Old</label>
+                        <label className="form-label">Gái gốc</label>
                         <input
                           type="number"
                           placeholder="Type here"
@@ -200,7 +199,7 @@ const EditProductMain = (props) => {
                         ></input>
                       </div>
                       <div className="mb-4">
-                        <label className="form-label">Price New</label>
+                        <label className="form-label">Giá bán</label>
                         <input
                           type="number"
                           placeholder="Type here"
@@ -211,7 +210,7 @@ const EditProductMain = (props) => {
                         ></input>
                       </div>
                       <div className="mb-4">
-                        <label className="form-label">Rating</label>
+                        <label className="form-label">Đánh giá</label>
                         <input
                           type="number"
                           placeholder="Type here"
@@ -222,7 +221,7 @@ const EditProductMain = (props) => {
                         ></input>
                       </div>
                       <div className="mb-4">
-                        <label className="form-label">Quantity</label>
+                        <label className="form-label">Số lượng còn lại</label>
                         <input
                           type="number"
                           placeholder="Type here"
@@ -233,7 +232,7 @@ const EditProductMain = (props) => {
                         ></input>
                       </div>
                       <div className={material != "" ? "mb-4" : "d-none"}>
-                        <label className="form-label">Material</label>
+                        <label className="form-label">Chất liệu</label>
                         <input
                           type="text"
                           placeholder="Type here"
@@ -243,7 +242,7 @@ const EditProductMain = (props) => {
                         ></input>
                       </div>
                       <div className={origin != "" ? "mb-4" : "d-none"}>
-                        <label className="form-label">Origin</label>
+                        <label className="form-label">Nguồn gốc</label>
                         <select
                           className="form-select"
                           onChange={(e) => setOrigin(e.target.value)}
@@ -285,7 +284,7 @@ const EditProductMain = (props) => {
                         ></input>
                       </div>
                       <div className="mb-4">
-                        <label className="form-label">How To Use</label>
+                        <label className="form-label">Cách sử dụng</label>
                         <textarea
                           placeholder="Type here"
                           className="form-control"
@@ -356,7 +355,7 @@ const EditProductMain = (props) => {
                             : "d-none"
                         }
                       >
-                        <label className="form-label">Title</label>
+                        <label className="form-label">Mệnh</label>
                         <select
                           className="form-select"
                           onChange={(e) => setMenh(e.target.value)}
@@ -387,7 +386,7 @@ const EditProductMain = (props) => {
 
                       <div class="mb-3">
                         <label for="formFileMultiple" class="form-label">
-                          Images
+                          Ảnh
                         </label>
                         <input
                           class="form-control"

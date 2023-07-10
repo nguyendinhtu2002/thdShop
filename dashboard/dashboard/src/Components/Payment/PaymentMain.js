@@ -40,7 +40,7 @@ const PaymentMain = () => {
     <>
       <section className="content-main">
         <div className="content-header">
-          <h2 className="content-title">Payments</h2>
+          <h2 className="content-title">Thanh toán</h2>
         </div>
 
         <div className="card mb-4 shadow-sm">

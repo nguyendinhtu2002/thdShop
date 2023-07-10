@@ -51,7 +51,7 @@ const Users = (props) => {
       selector: (row) => row._id,
     },
     {
-      name: "Full Name",
+      name: "Họ và tên",
       selector: (row) => row.firstName + " " + row.lastName,
     },
     {
@@ -59,15 +59,15 @@ const Users = (props) => {
       selector: (row) => row.email,
     },
     {
-      name: "Phone",
+      name: "Điện thoại",
       selector: (row) => row.address[0]?.phoneNumber,
     },
     {
-      name: "IsAdmin",
+      name: "Quản trị viên",
       selector: (row) => (row.isAdmin ? "Admin" : "Người dùng"),
     },
     {
-      name: "Action",
+      name: "Hành động",
       selector: (row) => (
         <div className="d-flex " style={{ width: "450px" }}>
           <Link
@@ -75,14 +75,14 @@ const Users = (props) => {
             style={{ paddingRight: "5px" }}
             // className="btn btn-sm btn-outline-success p-2 pb-3 col-md-6"
           >
-            <button className="btn btn-primary">Edit</button>
+            <button className="btn btn-primary">Sửa</button>
           </Link>
           <button
             type="button"
             onClick={() => handleDelete(row._id)}
             className="btn btn-danger "
           >
-            Delete
+            Xóa
           </button>
         </div>
       ),

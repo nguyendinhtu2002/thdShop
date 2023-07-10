@@ -65,23 +65,23 @@ const Payment = (props) => {
   };
   const columns = [
     {
-      name: "Order ID",
+      name: "Mã đơn hàng",
       // selector: (row) => row.order.products[0].name,
       selector: (row) => row.orderId,
     },
     {
-      name: "Payment Method",
+      name: "Phương thức thanh toán",
       // selector: (row) => row.order.products[0].name,
       selector: (row) => row.paymentMethod,
     },
     {
-      name: "Amount",
+      name: "Thành tiền",
       // selector: (row) => row.order.customerAddress,
       selector: (row) => formattedAmount(row.amount),
     },
 
     {
-      name: "Status",
+      name: "Trạng thái",
       selector: (row) => row.status,
     },
 
@@ -94,14 +94,14 @@ const Payment = (props) => {
             style={{ marginRight: "5px" }}
             // className="btn btn-sm btn-outline-success p-2 pb-3 col-md-6"
           >
-            <button className="btn btn-primary">Edit</button>
+            <button className="btn btn-primary">Sửa</button>
           </Link>
           <button
             type="button"
             onClick={() => handleDelete(row._id)}
             className="btn btn-danger"
           >
-            Delete
+            Xóa
           </button>
         </div>
       ),
